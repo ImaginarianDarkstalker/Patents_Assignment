@@ -1,0 +1,129 @@
+{
+  "total_patents": 9454161,
+  "top_inventors": [
+    {
+      "name": "Shunpei Yamazaki",
+      "patents": 6787
+    },
+    {
+      "name": "Kia Silverbrook",
+      "patents": 4778
+    },
+    {
+      "name": "Tao Luo",
+      "patents": 4490
+    },
+    {
+      "name": "Jonathan P. Ive",
+      "patents": 2947
+    },
+    {
+      "name": "Junyi Li",
+      "patents": 2881
+    },
+    {
+      "name": "Kangguo Cheng",
+      "patents": 2835
+    },
+    {
+      "name": "Frederick E. Shelton, IV",
+      "patents": 2723
+    },
+    {
+      "name": "Peter Gaal",
+      "patents": 2554
+    },
+    {
+      "name": "Duncan Robert Kerr",
+      "patents": 2534
+    },
+    {
+      "name": "Bartley K. Andre",
+      "patents": 2478
+    }
+  ],
+  "top_companies": [
+    {
+      "name": "SAMSUMG DISPLAY CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG  DISPLAY CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG  ELECTRONICS CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG DIPLAY CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG DISILAY CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG DISLAY CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG DISPALY CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG DISPLA CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG DISPLAY  CO., LTD.",
+      "patents": 174536
+    },
+    {
+      "name": "SAMSUNG DISPLAY CO LTD",
+      "patents": 174536
+    }
+  ],
+  "top_countries": [
+    {
+      "country": "US",
+      "share": 66.87
+    },
+    {
+      "country": "JP",
+      "share": 15.56
+    },
+    {
+      "country": "DE",
+      "share": 6.21
+    },
+    {
+      "country": "KR",
+      "share": 4.34
+    },
+    {
+      "country": "TW",
+      "share": 3.38
+    },
+    {
+      "country": "CN",
+      "share": 3.26
+    },
+    {
+      "country": "FR",
+      "share": 2.66
+    },
+    {
+      "country": "GB",
+      "share": 2.45
+    },
+    {
+      "country": "CA",
+      "share": 1.91
+    },
+    {
+      "country": "IT",
+      "share": 1.23
+    }
+  ]
+}
