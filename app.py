@@ -1,3 +1,4 @@
+pip install requests
 import sys
 from pathlib import Path
 
@@ -10,6 +11,36 @@ import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
 from patent_pipeline.scripts.config import DB_PATH
+
+import requests
+from pathlib import Path
+
+DB_URL = "https://huggingface.co/datasets/RisingDuck/patents.db"
+DB_PATH = Path("patents.db")
+
+def download_database():
+    print("Downloading database...")
+
+    response = requests.get(DB_URL, stream=True)
+    response.raise_for_status()
+
+    with open(DB_PATH, "wb") as f:
+        for chunk in response.iter_content(chunk_size=8192):
+            if chunk:
+                f.write(chunk)
+
+    print("Database downloaded successfully.")
+
+if not DB_PATH.exists():
+    download_database()
+
+@st.cache_resource
+def ensure_database():
+    if not DB_PATH.exists():
+        download_database()
+    return True
+
+ensure_database()
 
 st.set_page_config(page_title="Patent Analytics Dashboard", layout="wide")
 st.title("📊 Patent Data Pipeline – Dashboard")
