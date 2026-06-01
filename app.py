@@ -10,42 +10,54 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
-from patent_pipeline.scripts.config import DB_PATH
-
 import requests
-from pathlib import Path
 
-DB_URL = "https://huggingface.co/datasets/RisingDuck/patents.db"
+DB_URL = "https://huggingface.co/datasets/RisingDuck/patents/resolve/main/patents.db"
 DB_PATH = Path("patents.db")
 
 def download_database():
-    print("Downloading database...")
+    st.info("Preparing download...")
 
     response = requests.get(DB_URL, stream=True)
     response.raise_for_status()
 
+    total_size = int(response.headers.get("content-length", 0))
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+
+    downloaded = 0
+    chunk_size = 8192
+
     with open(DB_PATH, "wb") as f:
-        for chunk in response.iter_content(chunk_size=8192):
+        for chunk in response.iter_content(chunk_size=chunk_size):
             if chunk:
                 f.write(chunk)
+                downloaded += len(chunk)
 
-    print("Database downloaded successfully.")
+                # update progress
+                if total_size > 0:
+                    percent = int(downloaded / total_size * 100)
+                    progress_bar.progress(percent)
+                    status_text.text(f"Downloading database... {percent}%")
 
-if not DB_PATH.exists():
-    download_database()
+    progress_bar.progress(100)
+    status_text.text("Download complete ✅")
 
-@st.cache_resource
 def ensure_database():
     if not DB_PATH.exists():
         download_database()
-    return True
 
 ensure_database()
+
 
 st.set_page_config(page_title="Patent Analytics Dashboard", layout="wide")
 st.title("📊 Patent Data Pipeline – Dashboard")
 
-conn = sqlite3.connect(DB_PATH)
+@st.cache_resource
+def get_connection():
+    return sqlite3.connect(DB_PATH, check_same_thread=False)
+
+conn = get_connection()
 
 # ---------- Cached data loader (direct joins – no view/empty table needed) ----------
 @st.cache_data
@@ -135,4 +147,4 @@ else:
     st.info("No trend data.")
 
 st.caption("Data from USPTO PatentsView – processed with custom pipeline.")
-conn.close()
+
